@@ -1,2 +1,9 @@
 # remaches
-rivets config file
+Rivets config file bundeled with rivetsjs
+
+# build
+
+```
+  cake build
+
+```
