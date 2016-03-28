@@ -1,5 +1,4 @@
-if rivets?
-  rivets.configure
-    templateDelimiters: ["{{", "}}"]
+rivets.configure
+  templateDelimiters: ["{{", "}}"]
 
     
