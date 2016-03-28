@@ -22,6 +22,7 @@
   "dependencies": {
     "coffee-script": "^1.10.0",
     "flour": "^0.5.8",
+    "rivets": "^0.8.1",
     "uglify-js": "^2.6.2"
   }
 }
