@@ -26,6 +26,6 @@ or
 ## Build
 If you want to bake the package yourself ( no need to )
 ```
-#cake build
+# cake build
 
 ```
