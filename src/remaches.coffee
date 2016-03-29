@@ -12,7 +12,7 @@ rivets.formatters.or = (value, arg)->
 rivets.formatters.and = (value, arg)-> 
   value and arg
 
-rivet.fomrmatters.eq = 
+rivets.fomrmatters.eq = 
   rivets.formatters.is = (value, arg)-> 
     value is arg
 
