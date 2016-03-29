@@ -19,7 +19,7 @@
     return value && arg;
   };
 
-  rivet.fomrmatters.eq = rivets.formatters.is = function(value, arg) {
+  rivets.formatters.eq = rivets.formatters.is = function(value, arg) {
     return value === arg;
   };
 
