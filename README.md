@@ -2,7 +2,7 @@
 
 a Rivets.js config file bundeled with rivetsjs.
 
-##install
+##Install
 
 ```
 # git clone https://github.com/Yadaxim/remaches.git
@@ -17,14 +17,14 @@ or
  * remaches.min.js           -->  same thing .min
  * remaches.bundled.min.js  -->   bundled with Rivets.js + Sightglass.js
 
-### new formatters
+### New formatters
  * gt 
  * lt
  * eq
  etc...
 
 ## Build
-if you want to bake the package yourself ( no need to )
+If you want to bake the package yourself ( no need to )
 ```
 #cake build
 
