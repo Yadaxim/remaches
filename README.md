@@ -13,7 +13,7 @@ or
 ```
 
 ## What comes in /dist?
- * remaches.js               -->  just the rivets configuration file
+ * remaches.js               -->  just the rivets configuration file ( NOTE: not now )
  * remaches.min.js           -->  same thing .min
  * remaches.bundled.min.js  -->   bundled with Rivets.js + Sightglass.js
 

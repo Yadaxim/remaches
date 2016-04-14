@@ -1,12 +1,8 @@
 require 'flour'
 
-src = 'src/remaches'
-dist = 'dist/'
-
-task 'build', 'Brew projects coffees into dist js', ->
-  compile 'src/remaches.coffee', 'dist/remaches.js', ->
-    minify 'dist/remaches.js', 'dist/remaches.min.js', ->
-      bundle [
+task 'bake', 'Build projects coffees into dist js', ->
+  bundle  'src/*', 'dist/remaches.min.js', ->
+    bundle  [
         'node_modules/rivets/dist/rivets.bundled.min.js'
         'dist/remaches.min.js'
     ], 'dist/remaches.bundled.min.js', ->

@@ -1,16 +1,10 @@
-rivets.configure
-  templateDelimiters: ["{{", "}}"]
+# formatters
 
-#LOGICAL
+rivets.formatters.not = (value)-> not value
 
-rivets.formatters.not = (value)->
-  not value
+rivets.formatters.or = (value, arg)->  value or arg
 
-rivets.formatters.or = (value, arg)-> 
-  value or arg
-
-rivets.formatters.and = (value, arg)-> 
-  value and arg
+rivets.formatters.and = (value, arg)-> value and arg
 
 rivets.formatters.eq = 
   rivets.formatters.is = (value, arg)-> 
@@ -25,18 +19,28 @@ rivets.formatters.gt = (value, arg)-> value > arg
 rivets.formatters.lt = (value, arg)-> value < arg
 
 rivets.formatters['?'] = 
-  rivets.formatters.ternary = (cond, exp1, exp2)->if cond then exp1 else exp2
+  rivets.formatters.ternary = (cond, exp1, exp2)->
+    if cond then exp1 else exp2
 
 # Collections
 rivets.formatters.length = (c) -> c.length
 
+# Obj
+
+rivets.formatters.keys   = (obj) -> k for k,v of obj
+
+rivets.formatters.values = (obj) -> v for k,v of obj
+
+rivets.formatters.get =
+  rivets.formatters.key =  (obj, key) -> obj[key]
+
 #Array
 
-rivets.formatters.first = (array)-> array.first()
+rivets.formatters.index = (array, index) -> array[parseInt(index)]
 
-rivets.formatters.index = (array, index) -> array[index]
-rivets.formatters.key   = (obj, index) ->   obj[index]
+rivets.formatters.first = (array)-> array[0]
 
+rivets.formatters.last = (array)-> array[array.length-1]
 
 rivets.formatters.pluck = (array, key)-> array.map( (x)-> x[key] )
 
@@ -64,11 +68,6 @@ rivets.formatters.lowcase = (string) -> string.toLowerCase()
 
 rivets.formatters.trim = (string) -> string.trim()
 
-rivets.formatters.dic = (id, dic, attr) ->
-  if (x = eval('session.' + dic).findFirstByFn(id, ((x) -> x['id']) ))
-    x[attr]
-  else
-    ""
 
 # Numerical (+ can still be used to append strings and so)
 
@@ -77,28 +76,19 @@ rivets.formatters['-'] = (value, args)->value - args
 rivets.formatters['*'] = (value, args)->value * args
 rivets.formatters['/'] = (value, args)->value / args
 
-shout = (obj,keypath) ->
-  console.log " ---- ERROR: The value \"#{ keypath }\" of the following object is not defined OR \"#{ keypath }\" has not been called/bound by rivets ---- "
-  console.log obj
 
-  throw "TypeError: Cannot read property '_rv' of undefined"
+# more specific
 
+rivets.formatters.dic = (id, dic, attr) ->
+  throw "ERROR: Dictionary  session.{dic} is not bound. "  unless (d = session[dic])
 
-# one way adapter
-rivets.adapters[':'] =
-  observe: (obj,keypath,callback)->
-    shout(obj,keypath) if typeof obj[keypath] is 'undefined'
-    rivets.adapters['.'].observe(obj, keypath, callback)
+  if (x = d.find( ((x) -> x['id'] is id) ))
+    x[attr]
+  else
+    ""
 
-  unobserve: (obj,keypath,callback)->
-    rivets.adapters['.'].unobserve(obj, keypath, callback)
-
-
-  get: (obj,keypath,callback)->
-    rivets.adapters['.'].get(obj, keypath, callback)
-
-  set: (obj,keypath,callback)->  # empty
-
-
-rivets.binders['text-color'] = (el,value) ->
-  $(el).css "color": value
+rivets.formatters.format = (value, args...) ->
+  if value
+    return args.join(" ").format(Array(value.toString()))
+  else
+    return args.join(" ").format(Array('NULL'))
