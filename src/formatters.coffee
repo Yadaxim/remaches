@@ -46,7 +46,9 @@ rivets.formatters.pluck = (array, key)-> array.map( (x)-> x[key] )
 
 rivets.formatters.oneOf = (value, args...) -> value in args
 
-rivets.formatters.in = (value, arg) -> value in arg
+rivets.formatters.in = (e,a)-> e in a
+
+rivets.formatters.has = (a,e)-> e in a 
 
 rivets.formatters.join = (array , separator)->
   array.join( separator || "\n")
@@ -68,6 +70,7 @@ rivets.formatters.lowcase = (string) -> string.toLowerCase()
 
 rivets.formatters.trim = (string) -> string.trim()
 
+rivets.formatters.brize = (string)->  string.replace(/\n/g,"<br/>")
 
 # Numerical (+ can still be used to append strings and so)
 
