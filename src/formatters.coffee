@@ -74,6 +74,8 @@ rivets.formatters.brize = (string)->  string.replace(/\n/g,"<br/>")
 
 rivets.formatters.truncate = (string, l) -> if string  and (string.length > eval(l)) then string[0..eval(l)] + "..." else string
 
+rivets.formatters.split = (string, separator) -> string.split(separator)
+
 # Numerical (+ can still be used to append strings and so)
 
 rivets.formatters['+'] = (value, args)->value + args
