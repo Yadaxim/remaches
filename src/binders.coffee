@@ -11,3 +11,6 @@ rivets.binders['fa'] = (el,icon) ->
 
 rivets.binders['glyph'] = (el,icon) ->
   $(el).addClass("glyphicon glyphicon-#{icon}")
+
+rivets.binders['mdi'] = (el,icon) ->
+  $(el).addClass("mdi mdi-#{icon}")
